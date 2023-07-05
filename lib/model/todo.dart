@@ -9,5 +9,5 @@ class Todo{
   String description;
   bool isDone;
 
-  Todo({required this.createdTime, required this.title, required this.id, this.description='', this.isDone = false});
+  Todo({required this.createdTime, required this.title, this.id='', this.description='', this.isDone = false});
 }
