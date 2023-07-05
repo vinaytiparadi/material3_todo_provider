@@ -4,15 +4,14 @@ import '../model/todo.dart';
 
 class ToDosProvider extends ChangeNotifier{
   List<Todo> _todos = [
-    Todo(createdTime: DateTime.now(), title: 'Walk the Dog', id:'1'),
+    Todo(createdTime: DateTime.now(), title: 'Walk the Dog 🐕', id:'1'),
     Todo(
         createdTime: DateTime.now(),
-        title: 'Buy these Stuff 💵',
+        title: 'Get repaired these items: 🔌',
         id: '2',
       description: '''- Laptop
-      - Phone
-      - Headphones
-      '''
+- Phone
+- Headphones'''
     ),
   ];
 

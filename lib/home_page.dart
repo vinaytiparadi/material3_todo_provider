@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_provider/widgets/add_todo_diaglog.dart';
+import 'package:todo_provider/widgets/todo_list_widget.dart';
 import 'package:todo_provider/widgets/todo_widget.dart';
 
 import 'model/todo.dart';
@@ -16,9 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      Container(
-        child: TodoWidget(todo: Todo(createdTime: DateTime.now(), title: 'Nice', id: '333'),),
-      ),
+      TodoListWidget(),
       Container(),
     ];
 

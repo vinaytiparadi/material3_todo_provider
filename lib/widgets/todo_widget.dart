@@ -8,38 +8,44 @@ class TodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-        startActionPane: ActionPane(motion: const DrawerMotion(), children: [
-          SlidableAction(
-            onPressed: (context) {},
-            label: 'Edit',
-            backgroundColor: Colors.green,
-            icon: Icons.edit,
-          ),
-        ]),
-        endActionPane: ActionPane(motion: const DrawerMotion(), children: [
-          SlidableAction(
-            onPressed: (context) {},
-            label: 'Delete',
-            backgroundColor: Colors.red,
-            icon: Icons.delete,
-          ),
-        ]),
-        key: Key(todo.id),
-        child: buildTodo(context));
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(40),
+      child: Slidable(
+          startActionPane: ActionPane(motion: const DrawerMotion(), children: [
+            SlidableAction(
+              onPressed: (context) {},
+              label: 'Edit',
+              backgroundColor: Colors.green,
+              icon: Icons.edit,
+            ),
+          ]),
+          endActionPane: ActionPane(motion: const DrawerMotion(), children: [
+            SlidableAction(
+              onPressed: (context) {},
+              label: 'Delete',
+              backgroundColor: Colors.red,
+              icon: Icons.delete,
+            ),
+          ]),
+          key: Key(todo.id),
+          child: buildTodo(context)),
+    );
   }
 
   Widget buildTodo(BuildContext context) => Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.teal.shade50,
+        ),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             Checkbox(value: todo.isDone, onChanged: (_) {}),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.02,
+              width: MediaQuery.of(context).size.width * 0.03,
             ),
             Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   todo.title,
