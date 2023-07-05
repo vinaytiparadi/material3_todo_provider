@@ -37,45 +37,51 @@ class TodoWidget extends StatelessWidget {
     );
   }
 
-  Widget buildTodo(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          color: Colors.teal.shade50,
+  Widget buildTodo(BuildContext context) => GestureDetector(
+        onTap: () => editTodo(
+          context,
+          todo,
         ),
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Checkbox(value: todo.isDone, onChanged: (_) {
-              final provider = Provider.of<ToDosProvider>(context, listen: false);
-              final isDone = provider.toggleTodoStatus(todo);
-              Utils.showSnackBar(context, isDone ? 'Task completed!' : 'Task marked incomplete!');
-            }),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
-            ),
-            Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  todo.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 22.0,
-                  ),
-                ),
-                if (todo.description.isNotEmpty)
-                  Container(
-                    margin: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      todo.description,
-                      style: const TextStyle(fontSize: 20.0, height: 1.5),
+    child: Container(
+          decoration: BoxDecoration(
+            color: Colors.teal.shade50,
+          ),
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              Checkbox(value: todo.isDone, onChanged: (_) {
+                final provider = Provider.of<ToDosProvider>(context, listen: false);
+                final isDone = provider.toggleTodoStatus(todo);
+                Utils.showSnackBar(context, isDone ? 'Task completed!' : 'Task marked incomplete!');
+              }),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.03,
+              ),
+              Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    todo.title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 22.0,
                     ),
                   ),
-              ],
-            ))
-          ],
+                  if (todo.description.isNotEmpty)
+                    Container(
+                      margin: const EdgeInsets.only(top: 4.0),
+                      child: Text(
+                        todo.description,
+                        style: const TextStyle(fontSize: 20.0, height: 1.5),
+                      ),
+                    ),
+                ],
+              ))
+            ],
+          ),
         ),
-      );
+  );
 
   void deleteTodo(BuildContext context, Todo todo){
     final provider = Provider.of<ToDosProvider>(context, listen: false);

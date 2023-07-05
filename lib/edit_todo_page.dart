@@ -32,6 +32,15 @@ class _EditTodoPageState extends State<EditTodoPage> {
         backgroundColor: Colors.teal,
         title: const Text('Edit Task'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){
+            final provider = Provider.of<ToDosProvider>(context, listen: false);
+            provider.removeTodo(
+              widget.todo,
+            );
+            Navigator.of(context).pop();
+          }, icon: const Icon(Icons.delete)),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
