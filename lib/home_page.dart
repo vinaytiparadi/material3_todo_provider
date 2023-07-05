@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_provider/widgets/add_todo_diaglog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -45,7 +46,13 @@ class _HomePageState extends State<HomePage> {
       body: tabs[_selectedIndex],
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context) {
+                return AddToDoDialogWidget();
+              },
+            );
           },
           icon: const Icon(Icons.add_task),
           label: const Text('Add Task')),
