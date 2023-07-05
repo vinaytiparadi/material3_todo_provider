@@ -43,7 +43,11 @@ class TodoWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: [
-            Checkbox(value: todo.isDone, onChanged: (_) {}),
+            Checkbox(value: todo.isDone, onChanged: (_) {
+              final provider = Provider.of<ToDosProvider>(context, listen: false);
+              final isDone = provider.toggleTodoStatus(todo);
+              Utils.showSnackBar(context, isDone ? 'Task completed!' : 'Task marked incomplete!');
+            }),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.03,
             ),
@@ -76,6 +80,5 @@ class TodoWidget extends StatelessWidget {
     final provider = Provider.of<ToDosProvider>(context, listen: false);
     provider.removeTodo(todo);
     Utils.showSnackBar(context, 'Deleted the task!');
-
   }
 }
